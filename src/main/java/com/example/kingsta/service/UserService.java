@@ -8,7 +8,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Slf4j
 @RequiredArgsConstructor
 @Transactional
 @Service
@@ -17,7 +16,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder encoder;
 
-    public User signIn(User user) {
+    public User join(User user) {
         String rawPassword = user.getPassword();
         String encPassword = encoder.encode(rawPassword);
 
@@ -25,7 +24,6 @@ public class UserService {
         user.setRole("ROLE_USER");
         User userEntity = userRepository.save(user);
 
-        log.info("{} 로그인 완료",userEntity);
         return userEntity;
     }
 }
