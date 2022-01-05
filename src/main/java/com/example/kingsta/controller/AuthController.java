@@ -2,7 +2,7 @@ package com.example.kingsta.controller;
 
 import com.example.kingsta.domain.user.User;
 import com.example.kingsta.dto.SignUpDto;
-import com.example.kingsta.exception.CustomValidationException;
+import com.example.kingsta.handler.ex.CustomValidationException;
 import com.example.kingsta.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

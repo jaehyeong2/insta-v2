@@ -1,6 +1,7 @@
-package com.example.kingsta.exception;
+package com.example.kingsta.handler.ex;
 
 import java.util.Map;
+
 
 public class CustomValidationException extends RuntimeException{
 

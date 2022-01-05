@@ -43,19 +43,19 @@
 						<input type="password" name="password" placeholder="패스워드" required="required"  />
 					</div>
 				</div>
-				<div class="content-item__05">
-					<div class="item__title">웹사이트</div>
-					<div class="item__input">
-						<input type="text" name="website" placeholder="웹 사이트"
-							value="${principal.user.website}" />
-					</div>
-				</div>
-				<div class="content-item__06">
-					<div class="item__title">소개</div>
-					<div class="item__input">
-						<textarea name="bio" id="" rows="3">${principal.user.bio}</textarea>
-					</div>
-				</div>
+<%--				<div class="content-item__05">--%>
+<%--					<div class="item__title">웹사이트</div>--%>
+<%--					<div class="item__input">--%>
+<%--						<input type="text" name="website" placeholder="웹 사이트"--%>
+<%--							value="${principal.user.website}" />--%>
+<%--					</div>--%>
+<%--				</div>--%>
+<%--				<div class="content-item__06">--%>
+<%--					<div class="item__title">소개</div>--%>
+<%--					<div class="item__input">--%>
+<%--						<textarea name="bio" id="" rows="3">${principal.user.bio}</textarea>--%>
+<%--					</div>--%>
+<%--				</div>--%>
 				<div class="content-item__07">
 					<div class="item__title"></div>
 					<div class="item__input">
@@ -70,19 +70,19 @@
 							value="${principal.user.email}" readonly="readonly" />
 					</div>
 				</div>
-				<div class="content-item__09">
-					<div class="item__title">전회번호</div>
-					<div class="item__input">
-						<input type="text" name="phone" placeholder="전화번호"
-							value="${principal.user.phone}" />
-					</div>
-				</div>
-				<div class="content-item__10">
-					<div class="item__title">성별</div>
-					<div class="item__input">
-						<input type="text" name="gender" value="${principal.user.gender}" />
-					</div>
-				</div>
+<%--				<div class="content-item__09">--%>
+<%--					<div class="item__title">전회번호</div>--%>
+<%--					<div class="item__input">--%>
+<%--						<input type="text" name="phone" placeholder="전화번호"--%>
+<%--							value="${principal.user.phone}" />--%>
+<%--					</div>--%>
+<%--				</div>--%>
+<%--				<div class="content-item__10">--%>
+<%--					<div class="item__title">성별</div>--%>
+<%--					<div class="item__input">--%>
+<%--						<input type="text" name="gender" value="${principal.user.gender}" />--%>
+<%--					</div>--%>
+<%--				</div>--%>
 
 				<!--제출버튼-->
 				<div class="content-item__11">

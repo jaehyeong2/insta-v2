@@ -26,4 +26,18 @@ public class UserService {
 
         return userEntity;
     }
+
+    public User modify(Long id,User user){
+        User userEntity = userRepository.findById(id).orElseThrow(() -> {
+            return new IllegalArgumentException("찾을 수 없는 ID입니다");
+        });
+
+        userEntity.setName(user.getName());
+
+        String rawPassword = user.getPassword();
+        String encodedPassword = encoder.encode(rawPassword);
+        userEntity.setPassword(encodedPassword);
+
+        return userEntity;
+    }
 }
