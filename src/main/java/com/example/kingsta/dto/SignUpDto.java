@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 public class SignUpDto {
 
     @NotBlank
-    private String userName;
+    private String username;
 
     @NotBlank
     private String name;
@@ -22,7 +22,7 @@ public class SignUpDto {
     private String email;
 
     public User toEntity(SignUpDto signUoDto) {
-        return User.builder().name(name).userName(userName).email(email).password(password)
+        return User.builder().name(name).username(username).email(email).password(password)
                 .build();
     }
 }

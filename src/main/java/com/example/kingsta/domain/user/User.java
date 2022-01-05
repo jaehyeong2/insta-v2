@@ -1,29 +1,29 @@
 package com.example.kingsta.domain.user;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import com.example.kingsta.domain.comment.Comment;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
-@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
 public class User {
 
     @Id
     @GeneratedValue
+    @Column(name = "user_id")
     private Long id;
 
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
-    private String userName;
+    private String username;
 
     @Column(nullable = false)
     private String email;
@@ -33,15 +33,13 @@ public class User {
 
     private String role;
 
-    public User() {
-    }
+    @OneToMany(mappedBy = "user")
+    private List<Comment> commentList;
 
-    public User(Long id, String name, String userName, String email, String password, String role) {
-        this.id = id;
-        this.name = name;
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
-        this.role = role;
+    private LocalDateTime createDate;
+
+    @PrePersist
+    public void createDate(){
+        this.createDate = LocalDateTime.now();
     }
 }

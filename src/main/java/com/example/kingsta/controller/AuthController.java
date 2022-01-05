@@ -46,7 +46,7 @@ public class AuthController {
         } else {
             User userEntity = signUpDto.toEntity(signUpDto);
             userService.join(userEntity);
-            log.info("{}님 회원가입 완료", userEntity.getUserName());
+            log.info("{}님 회원가입 완료", userEntity.getUsername());
             return "redirect:/";
         }
     }

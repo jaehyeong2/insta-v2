@@ -1,4 +1,4 @@
-package com.example.kingsta.config;
+package com.example.kingsta.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

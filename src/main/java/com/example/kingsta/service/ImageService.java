@@ -7,5 +7,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Transactional
 @Service
-public class BoardService {
+public class ImageService {
 }
