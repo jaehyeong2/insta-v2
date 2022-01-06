@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Slf4j
 @RequiredArgsConstructor
 @Transactional
 @Service
@@ -21,5 +20,9 @@ public class SubscribeService {
         } catch (Exception e){
             throw new CustomApiException("이미 구독중입니다");
         }
+    }
+
+    public void unSubscribe(Long fromUserId, Long toUserId){
+            subscribeRepository.muNSubscribe(fromUserId,toUserId);
     }
 }
