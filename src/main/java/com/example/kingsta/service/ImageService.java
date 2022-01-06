@@ -5,7 +5,6 @@ import com.example.kingsta.domain.image.Image;
 import com.example.kingsta.domain.image.ImageRepository;
 import com.example.kingsta.dto.ImageUploadDto;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +18,9 @@ import java.util.UUID;
 @Transactional
 @Service
 public class ImageService {
+
+//    @Value("${file.path}")
+//    private static String uploadFolder;
 
     private static String uploadFolder = "C:/Users/wogud2/upload/";
 
@@ -35,6 +37,7 @@ public class ImageService {
         } catch (Exception e){
             e.printStackTrace();
         }
+
 
         Image image = imageUploadDto.toEntity(imageFileName, principalDetails.getUser());
         imageRepository.save(image);

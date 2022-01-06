@@ -2,6 +2,7 @@ package com.example.kingsta.controller;
 
 import com.example.kingsta.config.security.PrincipalDetails;
 import com.example.kingsta.dto.ImageUploadDto;
+import com.example.kingsta.handler.ex.CustomValidationException;
 import com.example.kingsta.service.ImageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,9 +35,11 @@ public class ImageController {
 
     @PostMapping("image/upload")
     public String imageUpload(ImageUploadDto imageUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-//        if(imageUploadDto.getFile().isEmpty()){
-//            throw new CustomValidationException("이미지가 첨부되지않았습니다",null);
-//        }
+
+        if(imageUploadDto.getFile().isEmpty()){
+            throw new CustomValidationException("이미지가 첨부되지않았습니다",null);
+        }
+
         imageService.upload(imageUploadDto,principalDetails);
         log.info("{}님이 이미지를 업로드하였습니다.",principalDetails.getUser().getUsername());
         return "redirect:/user/" + principalDetails.getUser().getId();

@@ -2,6 +2,7 @@ package com.example.kingsta.domain.image;
 
 import com.example.kingsta.domain.comment.Comment;
 import com.example.kingsta.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,12 +20,13 @@ import java.util.List;
 public class Image {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "image_id")
     private Long id;
 
     private String caption;
     private String postImageUrl;
+
 
     @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -38,4 +40,5 @@ public class Image {
     public void createDate(){
         this.createDate = LocalDateTime.now();
     }
+
 }

@@ -26,8 +26,8 @@ public class UserApiController {
 
     private final UserService userService;
 
-    @PutMapping("api/user/{id}")
-    public CommonResDto<?> update(@PathVariable Long id,
+    @PutMapping("api/user/{userId}")
+    public CommonResDto<?> update(@PathVariable Long userId,
                                @Validated UserUpdateDto userUpdateDto,
                                BindingResult bindingResult,
                                @AuthenticationPrincipal PrincipalDetails principalDetails){
@@ -40,7 +40,7 @@ public class UserApiController {
             }
             throw new CustomValidationApiException("유효성 검사 실패",errorMap);
         }else{
-            User userEntity = userService.modify(id,userUpdateDto.toEntity());
+            User userEntity = userService.modify(userId,userUpdateDto.toEntity());
             principalDetails.setUser(userEntity);
             return new CommonResDto<>(1,"회원수정완료",userEntity);
         }

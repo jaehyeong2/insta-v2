@@ -2,6 +2,7 @@ package com.example.kingsta.domain.user;
 
 import com.example.kingsta.domain.comment.Comment;
 import com.example.kingsta.domain.image.Image;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
 
@@ -37,10 +38,11 @@ public class User {
     private String profileImageUrl;
     private String role;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private List<Comment> comments;
 
-    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user"})
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private List<Image> images;
 
     private LocalDateTime createDate;
