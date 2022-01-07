@@ -2,6 +2,7 @@ package com.example.kingsta.controller;
 
 
 import com.example.kingsta.config.security.PrincipalDetails;
+import com.example.kingsta.dto.UserProfileDto;
 import com.example.kingsta.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +22,8 @@ public class UserController {
     //유저 프로필
     @GetMapping("user/{userId}")
     public String profile(@PathVariable Long userId, Model model,@AuthenticationPrincipal PrincipalDetails principalDetails) {
-        userService.profile(userId);
-        model.addAttribute("dto",principalDetails);
-//        model.addAttribute("images",principalDetails.getUser().getImages());
+        UserProfileDto dto = userService.profile(userId, principalDetails.getUser().getId());
+        model.addAttribute("dto",dto);
         return "user/profile";
     }
 

@@ -17,21 +17,21 @@ import java.time.LocalDateTime;
 @Table(uniqueConstraints = {
                 @UniqueConstraint(
                         name = "subscribe_uk",
-                        columnNames = {"from_user_id","to_user_id"})}
+                        columnNames = {"fromUserId","toUserId"})}
 )
 
 public class Subscribe {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "subscribe_id")
     private Long id;
 
-    @JoinColumn(name = "from_user_id")
+    @JoinColumn(name="fromUserId")
     @ManyToOne
     private User fromUser;
 
-    @JoinColumn(name = "to_user_id")
+    @JoinColumn(name="toUserId")
     @ManyToOne
     private User toUser;
 

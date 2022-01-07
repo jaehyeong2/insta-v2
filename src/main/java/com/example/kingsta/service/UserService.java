@@ -2,6 +2,7 @@ package com.example.kingsta.service;
 
 import com.example.kingsta.domain.user.User;
 import com.example.kingsta.domain.user.UserRepository;
+import com.example.kingsta.dto.UserProfileDto;
 import com.example.kingsta.handler.ex.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -45,11 +46,16 @@ public class UserService {
 
     // 유저 프로필
     @Transactional(readOnly = true)
-    public User profile(Long userId){
+    public UserProfileDto profile(Long userId, Long principalId){
+        UserProfileDto userProfileDto = new UserProfileDto();
+
         User userEntity = userRepository.findById(userId).orElseThrow(() -> {
             throw new CustomException("해당 프로필 페이지가 존재하지 않습니다");
         });
 
-        return userEntity;
+        userProfileDto.setUser(userEntity);
+        userProfileDto.setPageOwnerState(userId == principalId); // 1이면 본인 프로필 정보
+        userProfileDto.setImageCount(userEntity.getImages().size());
+        return userProfileDto;
     }
 }
