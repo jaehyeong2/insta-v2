@@ -2,7 +2,7 @@ package com.example.kingsta.controller;
 
 
 import com.example.kingsta.config.security.PrincipalDetails;
-import com.example.kingsta.dto.UserProfileDto;
+import com.example.kingsta.dto.user.UserProfileDto;
 import com.example.kingsta.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

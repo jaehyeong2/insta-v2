@@ -1,4 +1,4 @@
-package com.example.kingsta.dto;
+package com.example.kingsta.dto.user;
 
 import com.example.kingsta.domain.user.User;
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
 package com.example.kingsta.controller;
 
 import com.example.kingsta.config.security.PrincipalDetails;
-import com.example.kingsta.dto.ImageUploadDto;
+import com.example.kingsta.dto.image.ImageUploadDto;
 import com.example.kingsta.handler.ex.CustomValidationException;
 import com.example.kingsta.service.ImageService;
 import lombok.RequiredArgsConstructor;

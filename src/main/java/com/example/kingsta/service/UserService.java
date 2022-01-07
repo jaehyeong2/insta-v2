@@ -1,8 +1,9 @@
 package com.example.kingsta.service;
 
+import com.example.kingsta.domain.subscribe.SubscribeRepository;
 import com.example.kingsta.domain.user.User;
 import com.example.kingsta.domain.user.UserRepository;
-import com.example.kingsta.dto.UserProfileDto;
+import com.example.kingsta.dto.user.UserProfileDto;
 import com.example.kingsta.handler.ex.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final SubscribeRepository subscribeRepository;
     private final BCryptPasswordEncoder encoder;
 
     //회원가입
@@ -53,9 +55,15 @@ public class UserService {
             throw new CustomException("해당 프로필 페이지가 존재하지 않습니다");
         });
 
+        int subscribeCount = subscribeRepository.mSubscribeCount(userId);
+        int subscribeState = subscribeRepository.mSubscribeState(principalId, userId);
+
         userProfileDto.setUser(userEntity);
         userProfileDto.setPageOwnerState(userId == principalId); // 1이면 본인 프로필 정보
         userProfileDto.setImageCount(userEntity.getImages().size());
+
+        userProfileDto.setSubscribeCount(subscribeCount);
+        userProfileDto.setSubscribeState(subscribeState == 1);
         return userProfileDto;
     }
 }

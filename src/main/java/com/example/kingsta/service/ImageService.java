@@ -3,7 +3,7 @@ package com.example.kingsta.service;
 import com.example.kingsta.config.security.PrincipalDetails;
 import com.example.kingsta.domain.image.Image;
 import com.example.kingsta.domain.image.ImageRepository;
-import com.example.kingsta.dto.ImageUploadDto;
+import com.example.kingsta.dto.image.ImageUploadDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;

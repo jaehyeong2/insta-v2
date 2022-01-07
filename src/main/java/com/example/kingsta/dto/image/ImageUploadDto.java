@@ -1,4 +1,4 @@
-package com.example.kingsta.dto;
+package com.example.kingsta.dto.image;
 
 import com.example.kingsta.domain.image.Image;
 import com.example.kingsta.domain.user.User;
