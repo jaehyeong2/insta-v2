@@ -1,6 +1,7 @@
 package com.example.kingsta.controller;
 
 import com.example.kingsta.config.security.PrincipalDetails;
+import com.example.kingsta.domain.image.Image;
 import com.example.kingsta.dto.image.ImageUploadDto;
 import com.example.kingsta.handler.ex.CustomValidationException;
 import com.example.kingsta.service.ImageService;
@@ -8,8 +9,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -24,7 +28,9 @@ public class ImageController {
     }
 
     @GetMapping("image/popular")
-    public String popularForm(){
+    public String popularForm(Model model){
+        List<Image> images = imageService.popularImage();
+        model.addAttribute("images",images);
         return "image/popular";
     }
 

@@ -2,6 +2,7 @@ package com.example.kingsta.domain.comment;
 
 import com.example.kingsta.domain.image.Image;
 import com.example.kingsta.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,10 +24,13 @@ public class Comment {
     private String content;
 
     // 연관관계 매핑
-    @ManyToOne
+    @JsonIgnoreProperties({"images"})
+    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
-    @ManyToOne
+    @JoinColumn(name = "image_id")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Image image;
 
     private LocalDateTime createDate;
