@@ -44,6 +44,7 @@ public class ImageService {
         imageRepository.save(image);
     }
 
+    // 스토리 페이지 불러오기
     @Transactional(readOnly = true)
     public Page<Image> story(Long principalId, Pageable pageable) {
         Page<Image> images = imageRepository.mStory(principalId, pageable);
@@ -60,7 +61,9 @@ public class ImageService {
         return images;
     }
 
+    // 인기 페이지 불러오기
+    @Transactional(readOnly = true)
     public List<Image> popularImage() {
-        return null;
+        return imageRepository.mPopular();
     }
 }

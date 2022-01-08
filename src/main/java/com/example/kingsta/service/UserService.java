@@ -55,6 +55,12 @@ public class UserService {
             throw new CustomException("해당 프로필 페이지가 존재하지 않습니다");
         });
 
+        // 좋아요 갯수 리턴
+        userEntity.getImages().forEach((image) -> {
+            image.setLikeCount(image.getLikes().size());
+        });
+
+        // 구독 개수, 상태
         int subscribeCount = subscribeRepository.mSubscribeCount(userId);
         int subscribeState = subscribeRepository.mSubscribeState(principalId, userId);
 
@@ -64,6 +70,7 @@ public class UserService {
 
         userProfileDto.setSubscribeCount(subscribeCount);
         userProfileDto.setSubscribeState(subscribeState == 1);
+
         return userProfileDto;
     }
 }
