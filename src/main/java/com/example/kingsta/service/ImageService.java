@@ -48,15 +48,15 @@ public class ImageService {
     public Page<Image> story(Long principalId, Pageable pageable) {
         Page<Image> images = imageRepository.mStory(principalId, pageable);
 
-//        images.forEach(image -> {
-//            image.setLikeCount(image.getLikes().size());
+        images.forEach(image -> {
+            image.setLikeCount(image.getLikes().size());
 
-//            image.getLikes().forEach((like) -> {
-//                if(like.getUser().getId() == principalId) {
-//                    image.setLikeState(true);
-//                }
-//            });
-//        });
+            image.getLikes().forEach((like) -> {
+                if(like.getUser().getId() == principalId) {
+                    image.setLikeState(true);
+                }
+            });
+        });
         return images;
     }
 

@@ -27,14 +27,15 @@ import java.time.LocalDateTime;
 public class Likes {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "likes_id")
     private Long id;
 
-    @JsonIgnoreProperties({"images"})
     @JoinColumn(name = "image_id")
     @ManyToOne
     private Image image; // 1
 
+    @JsonIgnoreProperties({"images"})
     @JoinColumn(name = "user_id")
     @ManyToOne
     private User user;
