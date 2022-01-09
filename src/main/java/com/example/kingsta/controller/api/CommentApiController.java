@@ -1,6 +1,7 @@
 package com.example.kingsta.controller.api;
 
 import com.example.kingsta.config.security.PrincipalDetails;
+import com.example.kingsta.domain.comment.Comment;
 import com.example.kingsta.dto.CommonResDto;
 import com.example.kingsta.dto.comment.CommentReqDto;
 import com.example.kingsta.handler.ex.CustomValidationApiException;
@@ -36,9 +37,9 @@ public class CommentApiController {
             throw new CustomValidationApiException("유효성 검사 실패", errorMap);
         }
 
-        commentService.writeComment(commentReqDto.getContent(),principalDetails.getUser().getId(),commentReqDto.getImageId());
+        Comment comment = commentService.writeComment(commentReqDto.getContent(), principalDetails.getUser().getId(), commentReqDto.getImageId());
         log.info("회원 {} : 댓글 작성", principalDetails.getUsername());
-        return new ResponseEntity<>(new CommonResDto<>(1, "댓글 생성 성공", null), HttpStatus.CREATED);
+        return new ResponseEntity<>(new CommonResDto<>(1, "댓글 생성 성공", comment), HttpStatus.CREATED);
     }
 
     @DeleteMapping("api/comment/{id}")

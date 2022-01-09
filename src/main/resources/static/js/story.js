@@ -165,8 +165,8 @@ function addComment(imageId) {
 		content: commentInput.val()
 	}
 
-	console.log(data);
-	console.log(JSON.stringify(data));
+	//console.log(data);
+	//console.log(JSON.stringify(data));
 
 	if (data.content === "") {
 		alert("댓글을 작성해주세요!");
@@ -215,7 +215,6 @@ function deleteComment(commentId) {
 		console.log("오류", error);
 	});
 }
-
 
 
 
