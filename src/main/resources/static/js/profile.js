@@ -73,9 +73,6 @@ function getSubscribeModalItem(u) {
 // (3) 유저 프로파일 사진 변경 (완)
 function profileImageUpload(pageUserId, principalId) {
 
-	//console.log("pageUserId", pageUserId);
-	//console.log("principalId", principalId);
-
 	if(pageUserId != principalId){
 		alert("프로필 사진을 수정할 수 없는 유저입니다.");
 		return;

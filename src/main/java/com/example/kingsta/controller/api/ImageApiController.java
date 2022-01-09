@@ -32,7 +32,7 @@ public class ImageApiController {
     }
 
     // 좋아요, 취소
-    @PostMapping("/api/image/{imageId}/likes")
+    @PostMapping("api/image/{imageId}/likes")
     public ResponseEntity<?> likes(@PathVariable Long imageId, @AuthenticationPrincipal PrincipalDetails principalDetails){
         likesService.like(imageId, principalDetails.getUser().getId());
         log.info("좋아요 이벤트 발생");

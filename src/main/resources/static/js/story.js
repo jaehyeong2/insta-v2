@@ -61,22 +61,22 @@ function getStoryItem(image) {
 		</div>
 		<div id="storyCommentList-${image.id}">`;
 
-	// image.comments.forEach((comment)=>{
-	// 	item +=`<div class="sl__item__contents__comment" id="storyCommentItem-${comment.id}">
-	// 			<p>
-	// 				<b>${comment.user.username} :</b> ${comment.content}
-	// 			</p>`;
-	//
-	// 	if(principalId == comment.user.id){
-	// 		item += `	<button onclick="deleteComment(${comment.id})">
-	// 									<i class="fas fa-times"></i>
-	// 								</button>`;
-	// 	}
-	//
-	// 	item += `
-	// 		</div>`;
-	//
-	// });
+	image.commentList.forEach((comment)=>{
+		item +=`<div class="sl__item__contents__comment" id="storyCommentItem-${comment.id}">
+				<p>
+					<b>${comment.user.username} :</b> ${comment.content}
+				</p>`;
+
+		if(principalId == comment.user.id){
+			item += `	<button onclick="deleteComment(${comment.id})">
+										<i class="fas fa-times"></i>
+									</button>`;
+		}
+
+		item += `	
+			</div>`;
+
+	});
 
 
 	item += `
@@ -165,8 +165,8 @@ function addComment(imageId) {
 		content: commentInput.val()
 	}
 
-	//console.log(data);
-	//console.log(JSON.stringify(data));
+	console.log(data);
+	console.log(JSON.stringify(data));
 
 	if (data.content === "") {
 		alert("댓글을 작성해주세요!");

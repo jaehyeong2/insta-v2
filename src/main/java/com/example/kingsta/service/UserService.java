@@ -4,16 +4,25 @@ import com.example.kingsta.domain.subscribe.SubscribeRepository;
 import com.example.kingsta.domain.user.User;
 import com.example.kingsta.domain.user.UserRepository;
 import com.example.kingsta.dto.user.UserProfileDto;
+import com.example.kingsta.handler.ex.CustomApiException;
 import com.example.kingsta.handler.ex.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Transactional
 @Service
 public class UserService {
+
+    private static String uploadFolder = "C:/Users/wogud2/upload/";
 
     private final UserRepository userRepository;
     private final SubscribeRepository subscribeRepository;
@@ -46,7 +55,7 @@ public class UserService {
         return userEntity;
     }
 
-    // 유저 프로필
+    // 유저 프로필 읽어오기
     @Transactional(readOnly = true)
     public UserProfileDto profile(Long userId, Long principalId){
         UserProfileDto userProfileDto = new UserProfileDto();
@@ -73,4 +82,28 @@ public class UserService {
 
         return userProfileDto;
     }
+
+    //유저 프로필 사진 변경
+    public User profileImageUpdate(Long principalId, MultipartFile profileImageFile) {
+        UUID uuid = UUID.randomUUID(); // uuid
+        String imageFileName = uuid+"_"+profileImageFile.getOriginalFilename(); // 1.jpg
+        System.out.println("이미지 파일이름 : "+imageFileName);
+
+        Path imageFilePath = Paths.get(uploadFolder+imageFileName);
+
+        // 통신, I/O -> 예외가 발생할 수 있다.
+        try {
+            Files.write(imageFilePath, profileImageFile.getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        User userEntity = userRepository.findById(principalId).orElseThrow(()->{
+            // throw -> return 으로 변경
+            return new CustomApiException("유저를 찾을 수 없습니다.");
+        });
+        userEntity.setProfileImageUrl(imageFileName);
+
+        return userEntity;
+    } // 더티체킹으로 업데이트 됨.
 }

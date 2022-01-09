@@ -1,9 +1,11 @@
 package com.example.kingsta.domain.user;
 
-import com.example.kingsta.domain.comment.Comment;
 import com.example.kingsta.domain.image.Image;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -37,9 +39,6 @@ public class User {
 
     private String profileImageUrl;
     private String role;
-
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
-    private List<Comment> comments;
 
     @JsonIgnoreProperties({"user"})
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
