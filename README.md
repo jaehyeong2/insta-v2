@@ -18,7 +18,7 @@ Spring boot
 
 Build tool
 
-- Gradle
+- Maven
 
 Database
 
