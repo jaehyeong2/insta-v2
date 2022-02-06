@@ -27,15 +27,15 @@ public class ImageService {
     private final ImageRepository imageRepository;
 
     // 사진 업로드
-    public void upload(ImageUploadDto imageUploadDto,@AuthenticationPrincipal PrincipalDetails principalDetails) {
+    public void upload(ImageUploadDto imageUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         UUID uuid = UUID.randomUUID();
-        String imageFileName = uuid+"_"+imageUploadDto.getFile().getOriginalFilename();
+        String imageFileName = uuid + "_" + imageUploadDto.getFile().getOriginalFilename();
 
-        Path imageFilePath = Paths.get(uploadFolder+imageFileName);
+        Path imageFilePath = Paths.get(uploadFolder + imageFileName);
 
-        try{
-            Files.write(imageFilePath,imageUploadDto.getFile().getBytes());
-        } catch (Exception e){
+        try {
+            Files.write(imageFilePath, imageUploadDto.getFile().getBytes());
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -53,7 +53,7 @@ public class ImageService {
             image.setLikeCount(image.getLikes().size());
 
             image.getLikes().forEach((like) -> {
-                if(like.getUser().getId() == principalId) {
+                if (like.getUser().getId() == principalId) {
                     image.setLikeState(true);
                 }
             });

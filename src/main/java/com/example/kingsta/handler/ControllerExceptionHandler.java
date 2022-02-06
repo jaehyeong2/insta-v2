@@ -18,26 +18,26 @@ import org.springframework.web.bind.annotation.RestController;
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(CustomValidationException.class)
-    public String validationExceptionHandler(CustomValidationException e){
-        if(e.getErrorMap()==null) {
+    public String validationExceptionHandler(CustomValidationException e) {
+        if (e.getErrorMap() == null) {
             return Script.back(e.getMessage());
-        }else{
+        } else {
             return Script.back(e.getErrorMap().toString());
         }
     }
 
     @ExceptionHandler(CustomException.class)
-    public String exceptionHandler(CustomException e){
+    public String exceptionHandler(CustomException e) {
         return Script.back(e.getMessage());
     }
 
     @ExceptionHandler(CustomValidationApiException.class)
-    public ResponseEntity<?> validationApiExceptionHandler(CustomValidationApiException e){
-        return new ResponseEntity<>(new CommonResDto<>(-1,e.getMessage(),e.getErrorMap()),HttpStatus.BAD_REQUEST);
+    public ResponseEntity<?> validationApiExceptionHandler(CustomValidationApiException e) {
+        return new ResponseEntity<>(new CommonResDto<>(-1, e.getMessage(), e.getErrorMap()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(CustomApiException.class)
-    public ResponseEntity<?> ApiExceptionHandler(CustomApiException e){
-        return new ResponseEntity<>(new CommonResDto<>(-1,e.getMessage(),null),HttpStatus.BAD_REQUEST);
+    public ResponseEntity<?> ApiExceptionHandler(CustomApiException e) {
+        return new ResponseEntity<>(new CommonResDto<>(-1, e.getMessage(), null), HttpStatus.BAD_REQUEST);
     }
 }

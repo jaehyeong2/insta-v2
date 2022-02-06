@@ -21,22 +21,22 @@ public class SubscribeService {
     private final EntityManager em;
 
     //구독
-    public void subscribe(Long fromUserId, Long toUserId){
+    public void subscribe(Long fromUserId, Long toUserId) {
         try {
-            subscribeRepository.mSubscribe(fromUserId,toUserId);
-        } catch (Exception e){
+            subscribeRepository.mSubscribe(fromUserId, toUserId);
+        } catch (Exception e) {
             throw new CustomApiException("이미 구독중입니다");
         }
     }
 
     //구독 취소
-    public void unSubscribe(Long fromUserId, Long toUserId){
-            subscribeRepository.mUnSubscribe(fromUserId,toUserId);
+    public void unSubscribe(Long fromUserId, Long toUserId) {
+        subscribeRepository.mUnSubscribe(fromUserId, toUserId);
     }
 
     // 구독 정보 불러오기
     @Transactional(readOnly = true)
-    public List<SubscribeResDto> subscribeList(Long userId,Long principalId){
+    public List<SubscribeResDto> subscribeList(Long userId, Long principalId) {
 
         // 쿼리 준비
         StringBuffer sb = new StringBuffer();
@@ -49,12 +49,12 @@ public class SubscribeService {
         sb.append("WHERE s.fromUserId = ?");
 
         Query query = em.createNativeQuery(sb.toString())
-                .setParameter(1,principalId)
-                .setParameter(2,principalId)
-                .setParameter(3,userId);
+                .setParameter(1, principalId)
+                .setParameter(2, principalId)
+                .setParameter(3, userId);
 
         JpaResultMapper result = new JpaResultMapper();
-        List<SubscribeResDto> subscribeDtos =  result.list(query, SubscribeResDto.class);
+        List<SubscribeResDto> subscribeDtos = result.list(query, SubscribeResDto.class);
 
         return subscribeDtos;
     }

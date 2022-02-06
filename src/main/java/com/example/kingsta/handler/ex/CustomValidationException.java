@@ -3,9 +3,9 @@ package com.example.kingsta.handler.ex;
 import java.util.Map;
 
 
-public class CustomValidationException extends RuntimeException{
+public class CustomValidationException extends RuntimeException {
 
-    private Map<String,String> errorMap;
+    private Map<String, String> errorMap;
 
     public CustomValidationException(String message, Map<String, String> errorMap) {
         super(message);

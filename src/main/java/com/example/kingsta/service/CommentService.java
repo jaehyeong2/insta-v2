@@ -17,7 +17,7 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
 
-    public Comment writeComment(String content, Long userId, Long imageId){
+    public Comment writeComment(String content, Long userId, Long imageId) {
 
         Image image = new Image();
         image.setId(imageId);
@@ -34,7 +34,7 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
-    public void deleteComment(Long id){
+    public void deleteComment(Long id) {
         commentRepository.deleteById(id);
     }
 }

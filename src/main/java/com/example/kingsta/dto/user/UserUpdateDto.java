@@ -17,7 +17,7 @@ public class UserUpdateDto {
     @NotBlank
     private String email;
 
-    public User toEntity(){
+    public User toEntity() {
         return User.builder()
                 .name(name).username(username).password(password).email(email)
                 .build();

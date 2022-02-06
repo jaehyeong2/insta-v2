@@ -12,11 +12,11 @@ public class LikesService {
 
     private final LikesRepository likesRepository;
 
-    public void like(Long imageId, Long principalId){
-        likesRepository.mLikes(imageId,principalId);
+    public void like(Long imageId, Long principalId) {
+        likesRepository.mLikes(imageId, principalId);
     }
 
-    public void unLike(Long imageId, Long principalId){
-        likesRepository.mUnLikes(imageId,principalId);
+    public void unLike(Long imageId, Long principalId) {
+        likesRepository.mUnLikes(imageId, principalId);
     }
 }

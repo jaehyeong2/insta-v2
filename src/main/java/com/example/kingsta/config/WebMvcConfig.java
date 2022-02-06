@@ -10,7 +10,7 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    private static int CACHE_PERIOD = 60*10*6;
+    private static int CACHE_PERIOD = 60 * 10 * 6;
     private static String uploadFolder = "C:/Users/wogud2/upload/";
 
 //    @Value("${file.path}")

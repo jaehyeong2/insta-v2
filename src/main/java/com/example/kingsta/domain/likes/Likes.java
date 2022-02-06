@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @Table(
         uniqueConstraints = {
                 @UniqueConstraint(
-                        name="likes_uk",
+                        name = "likes_uk",
                         columnNames = {"image_id", "user_id"}
                 )
         }

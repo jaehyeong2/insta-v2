@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class SubscribeResDto{
+public class SubscribeResDto {
 
     private Long userId;
     private String username;

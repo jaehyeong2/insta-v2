@@ -22,32 +22,32 @@ public class ImageController {
 
     private final ImageService imageService;
 
-    @GetMapping({"/","image"})
-    public String storyForm(){
+    @GetMapping({"/", "image"})
+    public String storyForm() {
         return "image/story";
     }
 
     @GetMapping("image/popular")
-    public String popularForm(Model model){
+    public String popularForm(Model model) {
         List<Image> images = imageService.popularImage();
-        model.addAttribute("images",images);
+        model.addAttribute("images", images);
         return "image/popular";
     }
 
     @GetMapping("image/upload")
-    public String uploadForm(){
+    public String uploadForm() {
         return "image/upload";
     }
 
     @PostMapping("image/upload")
     public String imageUpload(ImageUploadDto imageUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 
-        if(imageUploadDto.getFile().isEmpty()){
-            throw new CustomValidationException("이미지가 첨부되지않았습니다",null);
+        if (imageUploadDto.getFile().isEmpty()) {
+            throw new CustomValidationException("이미지가 첨부되지않았습니다", null);
         }
 
-        imageService.upload(imageUploadDto,principalDetails);
-        log.info("{}님이 이미지를 업로드하였습니다.",principalDetails.getUser().getUsername());
+        imageService.upload(imageUploadDto, principalDetails);
+        log.info("{}님이 이미지를 업로드하였습니다.", principalDetails.getUser().getUsername());
         return "redirect:/user/" + principalDetails.getUser().getId();
     }
 }

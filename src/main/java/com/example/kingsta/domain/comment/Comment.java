@@ -26,17 +26,17 @@ public class Comment {
     // 연관관계 매핑
     @JsonIgnoreProperties({"images"})
     @JoinColumn(name = "user_id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     @JoinColumn(name = "image_id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Image image;
 
     private LocalDateTime createDate;
 
     @PrePersist
-    public void createDate(){
+    public void createDate() {
         this.createDate = LocalDateTime.now();
     }
 

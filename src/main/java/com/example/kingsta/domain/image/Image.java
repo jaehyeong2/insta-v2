@@ -49,8 +49,9 @@ public class Image {
     private List<Comment> commentList;
 
     private LocalDateTime createDate;
+
     @PrePersist
-    public void createDate(){
+    public void createDate() {
         this.createDate = LocalDateTime.now();
     }
 

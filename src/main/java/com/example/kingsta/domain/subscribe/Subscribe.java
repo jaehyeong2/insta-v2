@@ -15,9 +15,9 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "subscribe_uk",
-                        columnNames = {"fromUserId","toUserId"})}
+        @UniqueConstraint(
+                name = "subscribe_uk",
+                columnNames = {"fromUserId", "toUserId"})}
 )
 
 public class Subscribe {
@@ -27,18 +27,18 @@ public class Subscribe {
     @Column(name = "subscribe_id")
     private Long id;
 
-    @JoinColumn(name="fromUserId")
+    @JoinColumn(name = "fromUserId")
     @ManyToOne
     private User fromUser;
 
-    @JoinColumn(name="toUserId")
+    @JoinColumn(name = "toUserId")
     @ManyToOne
     private User toUser;
 
     private LocalDateTime createDate;
 
     @PrePersist
-    public void  createDate() {
+    public void createDate() {
         this.createDate = LocalDateTime.now();
     }
 }

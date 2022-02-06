@@ -21,16 +21,16 @@ public class UserController {
 
     //유저 프로필
     @GetMapping("user/{userId}")
-    public String profile(@PathVariable Long userId, Model model,@AuthenticationPrincipal PrincipalDetails principalDetails) {
+    public String profile(@PathVariable Long userId, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         UserProfileDto dto = userService.profile(userId, principalDetails.getUser().getId());
-        model.addAttribute("dto",dto);
+        model.addAttribute("dto", dto);
         return "user/profile";
     }
 
     // 유저 정보 업데이트
     @GetMapping("user/{id}/update")
-    public String update(@PathVariable int id,Model model,@AuthenticationPrincipal PrincipalDetails principalDetails){
-        model.addAttribute("principal",principalDetails);
+    public String update(@PathVariable int id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        model.addAttribute("principal", principalDetails);
         return "user/update";
     }
 }

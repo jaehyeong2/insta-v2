@@ -41,13 +41,13 @@ public class User {
     private String role;
 
     @JsonIgnoreProperties({"user"})
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Image> images;
 
     private LocalDateTime createDate;
 
     @PrePersist
-    public void createDate(){
+    public void createDate() {
         this.createDate = LocalDateTime.now();
     }
 }

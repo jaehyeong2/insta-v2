@@ -41,7 +41,7 @@ public class UserService {
     }
 
     //유저 정보 수정
-    public User modify(Long id,User user){
+    public User modify(Long id, User user) {
         User userEntity = userRepository.findById(id).orElseThrow(() -> {
             return new IllegalArgumentException("찾을 수 없는 ID입니다");
         });
@@ -57,7 +57,7 @@ public class UserService {
 
     // 유저 프로필 읽어오기
     @Transactional(readOnly = true)
-    public UserProfileDto profile(Long userId, Long principalId){
+    public UserProfileDto profile(Long userId, Long principalId) {
         UserProfileDto userProfileDto = new UserProfileDto();
 
         User userEntity = userRepository.findById(userId).orElseThrow(() -> {
@@ -86,10 +86,10 @@ public class UserService {
     //유저 프로필 사진 변경
     public User profileImageUpdate(Long principalId, MultipartFile profileImageFile) {
         UUID uuid = UUID.randomUUID(); // uuid
-        String imageFileName = uuid+"_"+profileImageFile.getOriginalFilename(); // 1.jpg
-        System.out.println("이미지 파일이름 : "+imageFileName);
+        String imageFileName = uuid + "_" + profileImageFile.getOriginalFilename(); // 1.jpg
+        System.out.println("이미지 파일이름 : " + imageFileName);
 
-        Path imageFilePath = Paths.get(uploadFolder+imageFileName);
+        Path imageFilePath = Paths.get(uploadFolder + imageFileName);
 
         // 통신, I/O -> 예외가 발생할 수 있다.
         try {
@@ -98,7 +98,7 @@ public class UserService {
             e.printStackTrace();
         }
 
-        User userEntity = userRepository.findById(principalId).orElseThrow(()->{
+        User userEntity = userRepository.findById(principalId).orElseThrow(() -> {
             // throw -> return 으로 변경
             return new CustomApiException("유저를 찾을 수 없습니다.");
         });

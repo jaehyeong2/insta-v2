@@ -22,16 +22,16 @@ public class SubscribeApiController {
     private final SubscribeService subscribeService;
 
     @PostMapping("api/subscribe/{toUserId}")
-    public ResponseEntity<?> subscribe(@AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable Long toUserId){
-        subscribeService.subscribe(principalDetails.getUser().getId(),toUserId);
-        log.info("{}님 구독 이벤트 발생",principalDetails.getUsername());
-        return new ResponseEntity<>(new CommonResDto<>(1,"구독완료",null), HttpStatus.OK);
+    public ResponseEntity<?> subscribe(@AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable Long toUserId) {
+        subscribeService.subscribe(principalDetails.getUser().getId(), toUserId);
+        log.info("{}님 구독 이벤트 발생", principalDetails.getUsername());
+        return new ResponseEntity<>(new CommonResDto<>(1, "구독완료", null), HttpStatus.OK);
     }
 
     @DeleteMapping("api/subscribe/{toUserId}")
-    public ResponseEntity<?> unSubscribe(@AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable Long toUserId){
-        subscribeService.unSubscribe(principalDetails.getUser().getId(),toUserId);
-        log.info("{}님 구독 취소 이벤트 발생",principalDetails.getUsername());
-        return new ResponseEntity<>(new CommonResDto<>(1,"구독취소",null), HttpStatus.OK);
+    public ResponseEntity<?> unSubscribe(@AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable Long toUserId) {
+        subscribeService.unSubscribe(principalDetails.getUser().getId(), toUserId);
+        log.info("{}님 구독 취소 이벤트 발생", principalDetails.getUsername());
+        return new ResponseEntity<>(new CommonResDto<>(1, "구독취소", null), HttpStatus.OK);
     }
 }

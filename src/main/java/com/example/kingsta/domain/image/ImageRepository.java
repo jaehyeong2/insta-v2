@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface ImageRepository extends JpaRepository<Image,Long> {
+public interface ImageRepository extends JpaRepository<Image, Long> {
 
     @Query(value = "SELECT * FROM image WHERE user_id IN (SELECT toUserId FROM subscribe WHERE fromUserId = :principalId) ORDER BY image_id DESC", nativeQuery = true)
     Page<Image> mStory(Long principalId, Pageable pageable);
