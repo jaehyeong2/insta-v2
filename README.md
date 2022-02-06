@@ -17,6 +17,7 @@ Spring boot
 - Spring Security
 - Spring Data JPA
 - Spring Validation
+- Spring AOP
 
 Build tool
 
